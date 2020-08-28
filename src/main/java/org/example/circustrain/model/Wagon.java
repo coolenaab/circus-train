@@ -57,12 +57,16 @@ public class Wagon {
      *
      * @param animal The {@link Animal} to be added to the cart
      */
-    public void putAnimalInWagon(Animal animal) {
-        animals.add(animal);
-        currentWeight += animal.getWeightType().getWeight();
-        if (currentWeight >= MAX_WEIGHT) {
-            cartIsFull = true;
+    public boolean putAnimalInWagon(Animal animal) {
+        if (fitsInWagon(animal)) {
+            animals.add(animal);
+            currentWeight += animal.getWeightType().getWeight();
+            if (currentWeight >= MAX_WEIGHT) {
+                cartIsFull = true;
+            }
+            return true;
         }
+        return false;
     }
 
     @Override

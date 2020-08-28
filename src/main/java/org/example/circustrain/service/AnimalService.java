@@ -58,14 +58,14 @@ public class AnimalService {
      */
     private void putAnimalInWagon(Animal animal, List<Wagon> wagons) {
         if (wagons.isEmpty()) {
-           addNewWagon(wagons);
+            addNewWagon(wagons);
         }
 
-        Optional<Wagon> foundWagon = wagons.stream().filter(wagon -> wagon.fitsInWagon(animal)).findFirst();
+        Optional<Wagon> foundWagon = wagons.stream()
+                .filter(wagon -> wagon.putAnimalInWagon(animal))
+                .findFirst();
 
-        if (foundWagon.isPresent()) {
-            foundWagon.get().putAnimalInWagon(animal);
-        } else {
+        if (!foundWagon.isPresent()) {
             Wagon newWagon = addNewWagon(wagons);
             newWagon.putAnimalInWagon(animal);
         }
