@@ -8,17 +8,18 @@ import java.util.List;
  */
 public class Wagon {
 
-    private int maxWeight = 10;
+    private static final int MAX_WEIGHT = 10;
+
     private int currentWeight = 0;
     private boolean cartIsFull = false;
-    private List<Animal> animals;
+    private final List<Animal> animals;
 
     public Wagon() {
         animals = new ArrayList<>();
     }
 
     public int getMaxWeight() {
-        return maxWeight;
+        return MAX_WEIGHT;
     }
 
     public int getCurrentWeight() {
@@ -47,7 +48,7 @@ public class Wagon {
      */
     public boolean fitsInWagon(Animal animal) {
         return !cartIsFull &&
-                animal.getWeightType().getWeight() + currentWeight <= maxWeight &&
+                animal.getWeightType().getWeight() + currentWeight <= MAX_WEIGHT &&
                 animals.stream().noneMatch(animalInCart -> animalInCart.isCarnivore() && animalInCart.getWeightType().getWeight() >= animal.getWeightType().getWeight());
     }
 
@@ -59,7 +60,7 @@ public class Wagon {
     public void putAnimalInWagon(Animal animal) {
         animals.add(animal);
         currentWeight += animal.getWeightType().getWeight();
-        if (currentWeight >= maxWeight) {
+        if (currentWeight >= MAX_WEIGHT) {
             cartIsFull = true;
         }
     }

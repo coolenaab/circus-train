@@ -50,11 +50,8 @@ public class Animal implements Comparable<Animal>{
 
     @Override
     public String toString() {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("This is a ")
-                .append(carnivore ? "carnivore " : "herbivore ")
-                .append("of weight type ")
-                .append(weightType);
-        return stringBuilder.toString();
+        return "This is a " +
+                (carnivore ? "carnivore " : "herbivore ") +
+                "of weight type " + weightType;
     }
 }

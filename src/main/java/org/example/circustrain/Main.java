@@ -105,6 +105,8 @@ public class Main extends Application {
     private void showOutput(List<Wagon> wagons) {
         VBox vBoxWagons = new VBox();
         ObservableList<Node> txtFlowWagonsChildren = vBoxWagons.getChildren();
+        String wagonsAmount = String.valueOf(wagons.size());
+        txtFlowWagonsChildren.add(new Text(("Wagon amount: " + wagonsAmount)));
         wagons.forEach(wagon -> txtFlowWagonsChildren.add(new Text(wagon.toString())));
         scrollOutput.setContent(vBoxWagons);
     }

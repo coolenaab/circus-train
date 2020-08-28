@@ -1,11 +1,14 @@
 package org.example.circustrain.service;
 
+import com.sun.org.slf4j.internal.Logger;
+import com.sun.org.slf4j.internal.LoggerFactory;
 import org.example.circustrain.model.Animal;
 import org.example.circustrain.model.AnimalWeightType;
 import org.example.circustrain.model.Wagon;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -13,6 +16,8 @@ import java.util.Optional;
  * Service class for methods related to {@link Animal} classes
  */
 public class AnimalService {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(AnimalService.class);
 
     /**
      * Sorts the given amount of animals into a list of wagons.
@@ -26,24 +31,21 @@ public class AnimalService {
      * @return A {@link List} containing {@link Wagon} with the animals sorted within
      */
     public List<Wagon> sortAnimals(int smallCarnivores, int mediumCarnivores, int largeCarnivores, int smallHerbivores, int mediumHerbivores, int largeHerbivores) {
+        Instant begin = Instant.now();
         ArrayList<Wagon> wagons = new ArrayList<>();
 
-        ArrayList<Animal> carnivores = new ArrayList<>();
-        carnivores.addAll(createAnimals(AnimalWeightType.SMALL, true, smallCarnivores));
-        carnivores.addAll(createAnimals(AnimalWeightType.MEDIUM, true, mediumCarnivores));
-        carnivores.addAll(createAnimals(AnimalWeightType.LARGE, true, largeCarnivores));
-        Collections.sort(carnivores);
+        ArrayList<Animal> animals = new ArrayList<>();
+        animals.addAll(createAnimals(AnimalWeightType.LARGE, true, largeCarnivores));
+        animals.addAll(createAnimals(AnimalWeightType.LARGE, false, largeHerbivores));
+        animals.addAll(createAnimals(AnimalWeightType.MEDIUM, true, mediumCarnivores));
+        animals.addAll(createAnimals(AnimalWeightType.MEDIUM, false, mediumHerbivores));
+        animals.addAll(createAnimals(AnimalWeightType.SMALL, true, smallCarnivores));
+        animals.addAll(createAnimals(AnimalWeightType.SMALL, false, smallHerbivores));
 
-        ArrayList<Animal> herbivores = new ArrayList<>();
-        herbivores.addAll(createAnimals(AnimalWeightType.SMALL, false, smallHerbivores));
-        herbivores.addAll(createAnimals(AnimalWeightType.MEDIUM, false, mediumHerbivores));
-        herbivores.addAll(createAnimals(AnimalWeightType.LARGE, false, largeHerbivores));
-        Collections.sort(herbivores);
-
-        carnivores.addAll(herbivores);
-        carnivores.forEach(animal -> putAnimalInWagon(animal, wagons));
-
-        wagons.forEach(wagon -> System.out.println(wagon.toString()));
+        animals.forEach(animal -> putAnimalInWagon(animal, wagons));
+        Instant end = Instant.now();
+        wagons.forEach(wagon -> LOGGER.debug(wagon.toString()));
+        LOGGER.debug("Duration: {}", Duration.between(begin, end).toMillis());
         return wagons;
     }
 
