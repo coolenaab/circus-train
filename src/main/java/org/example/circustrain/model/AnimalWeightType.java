@@ -2,6 +2,8 @@ package org.example.circustrain.model;
 
 /**
  * Enum for the weight type of an animal.
+ *
+ * @author Coolenaab
  */
 public enum AnimalWeightType {
 

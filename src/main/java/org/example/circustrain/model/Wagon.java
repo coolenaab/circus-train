@@ -5,6 +5,8 @@ import java.util.List;
 
 /**
  * Model class for a Wagon which contains {@link Animal}
+ *
+ * @author Coolenaab
  */
 public class Wagon {
 

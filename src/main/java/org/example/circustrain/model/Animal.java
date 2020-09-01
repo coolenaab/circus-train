@@ -2,6 +2,8 @@ package org.example.circustrain.model;
 
 /**
  * Animal model class
+ *
+ * @author Coolenaab
  */
 public class Animal implements Comparable<Animal>{
 

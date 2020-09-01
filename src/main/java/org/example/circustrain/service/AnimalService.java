@@ -14,6 +14,8 @@ import java.util.Optional;
 
 /**
  * Service class for methods related to {@link Animal} classes
+ *
+ * @author Coolenaab
  */
 public class AnimalService {
 
@@ -92,7 +94,7 @@ public class AnimalService {
      * @return {@link ArrayList} containing the newly created animals
      */
     private ArrayList<Animal> createAnimals(AnimalWeightType weightType, boolean carnivore, int amount) {
-        ArrayList<Animal> animals = new ArrayList<>();
+        ArrayList<Animal> animals = new ArrayList<>(amount);
         for (int i=0; i<amount; i++) {
             animals.add(new Animal(carnivore, weightType));
         }

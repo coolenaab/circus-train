@@ -22,6 +22,8 @@ import java.util.List;
 /**
  * Main class for the application.
  * Builds the UI.
+ *
+ * @author Coolenaab
  */
 public class Main extends Application {
 
