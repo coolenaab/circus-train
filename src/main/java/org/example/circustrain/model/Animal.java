@@ -23,6 +23,10 @@ public class Animal implements Comparable<Animal>{
         return weightType;
     }
 
+    public boolean isLarge() {
+        return getWeightType() == AnimalWeightType.LARGE;
+    }
+
     /**
      * Override compareTo to specify when another animal is equal, smaller or larger than this animal.
      *
