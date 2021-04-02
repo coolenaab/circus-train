@@ -59,10 +59,6 @@ public class AnimalService {
      * @param wagons The {@link List} of {@link Wagon} where the {@link Animal} will be added to
      */
     private void putAnimalInWagon(Animal animal, List<Wagon> wagons) {
-        if (wagons.isEmpty()) {
-            addNewWagon(wagons);
-        }
-
         Optional<Wagon> foundWagon = wagons.stream()
                 .filter(wagon -> wagon.putAnimalInWagon(animal))
                 .findFirst();
