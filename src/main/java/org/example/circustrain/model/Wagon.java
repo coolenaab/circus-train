@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Wagon {
 
-    private static final int MAX_WEIGHT = 10;
+    private static final int MAX_WEIGHT = 15;
 
     private int currentWeight = 0;
     private boolean cartIsFull = false;
